@@ -1,0 +1,38 @@
+/* Regles generales */
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+body {
+  font-size: 1.4rem;
+  font-family: 'Quick';
+  position: relative;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+html, body {
+  overflow-x:hidden 
+} 
+
+a, a:hover, a:visited{
+  color: #FFF;
+  text-decoration: none;
+}
+img{
+  max-width:100%;
+  height: auto;
+  vertical-align: middle; 
+}
+input {
+  margin: 0;
+}
+
+
+

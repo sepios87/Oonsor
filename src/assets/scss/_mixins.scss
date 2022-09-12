@@ -1,0 +1,37 @@
+@mixin circle(
+    $size: 50px,
+    $top: 0,
+    $bottom: auto,
+    $left: 0,
+    $right: auto,
+    $z-index: 1,
+    $color: $red,
+    $mixBlend: soft-light
+) {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: $size;
+        height: $size;
+        background-color: $color;
+        border-radius: 50%;
+        top: $top;
+        bottom: $bottom;
+        left: $left;
+        right: $right;
+        opacity: 0.6;
+        z-index: $z-index;
+        mix-blend-mode: $mixBlend;
+        filter: saturate(random(100%) + 200%) contrast(random(100%) + 200%) drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5));
+    }
+}
+
+@mixin avatar($size: 120px) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    object-fit: cover;
+}

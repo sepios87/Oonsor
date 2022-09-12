@@ -1,0 +1,575 @@
+@import 'font';
+@import 'color';
+@import 'mixins';
+@import 'reset';
+@import 'base';
+
+.logo {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+
+    @media screen and (min-width: 768px) {
+        top: 15px;
+        left: 40px;
+    }
+
+    &__image {
+        width: 50px;
+
+        @media screen and (min-width: 768px) {
+            width: 70px;
+        }
+    }
+
+    &__text {
+        font-size: 30px;
+        position: relative;
+        top: 3px;
+        left: 5px;
+        letter-spacing: 4px;
+
+        @media screen and (min-width: 768px) {
+            font-size: 40px;
+            letter-spacing: 5px;
+            left: 5px;
+        }
+    }
+}
+
+.header {
+    &__banner {
+        object-fit: cover;
+        width: 100%;
+        height: 28vh;
+        object-position: 35% 50%;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%);
+        z-index: -1;
+
+        @media screen and (min-width: 768px) {
+            height: 55vh;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 65%);
+        }
+    }
+
+    filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5));
+
+    @include circle(90px, auto, -15px, -20px);
+    @media screen and (min-width: 768px) {
+        @include circle(200px, auto, -10%, 25%, auto, -2);
+    }
+}
+
+.nav {
+    &__burger {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        height: 25px;
+        z-index: 101;
+        cursor: pointer;
+
+        @media screen and (min-width: 768px) {
+            top: 28px;
+            right: 40px;
+        }
+    }
+
+    &__list {
+        transition: transform 0.5s;
+        left: -100vw;
+        z-index: 100;
+        width: 100vw;
+        display: flex;
+        background-color: $black;
+        color: white;
+        padding: 15% 0;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        font-size: 2.5rem;
+
+        @media screen and (min-width: 768px) {
+            padding: 10% 0;
+        }
+
+        &--open {
+            transform: translateX(100%);
+        }
+    }
+
+    &__item {
+        position: relative;
+
+        &:hover {
+            &::after {
+                width: 100%;
+            }
+        }
+
+        &::after {
+            content: '';
+            transition: 0.2s;
+            display: block;
+            background-color: white;
+            width: 0;
+            height: 1px;
+            bottom: -6px;
+            left: 0;
+            border-radius: 10px;
+            position: absolute;
+        }
+    }
+}
+
+.products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    row-gap: 30px;
+
+    @media screen and (min-width: 768px) {
+        row-gap: 50px;
+        padding: 0 8%;
+        justify-content: space-between;
+    }
+
+    @include circle(80px, auto, -50px, auto, -15px);
+    @media screen and (min-width: 768px) {
+        @include circle(220px, auto, -100px, auto, -40px, 2, $red, darken);
+    }
+}
+
+.card {
+    /* --- Variables --- */
+    $heightImage: 180px;
+
+    /* --- Component --- */
+    width: 40%;
+    max-width: 400px;
+    min-width: 120px;
+    filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.3));
+    transition: 0.2s;
+
+    @media screen and (min-width: 768px) {
+        $heightImage: 200px;
+        width: 26%;
+        max-width: none;
+    }
+
+    &:hover {
+        transform: scale(1.03);
+    }
+
+    &:nth-child(1) &__container {
+        clip-path: polygon(0 0, 100% 8%, 100% 100%, 0% 100%);
+    }
+
+    &:nth-child(2) &__container {
+        clip-path: polygon(0 9%, 100% 19%, 100% 100%, 0% 100%);
+    }
+
+    &:nth-child(3) &__container {
+        @media screen and (min-width: 768px) {
+            clip-path: polygon(0 21%, 100% 30%, 100% 100%, 0% 100%);
+        }
+    }
+
+    &--desktop {
+        display: none;
+
+        @media screen and (min-width: 768px) {
+            display: block;
+        }
+    }
+
+    &__container {
+        border-radius: 2px;
+        background-color: white;
+
+        &::after {
+            content: '';
+            display: block;
+            background-color: $blue;
+            height: $heightImage;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            mix-blend-mode: soft-light;
+        }
+    }
+
+    &__image {
+        height: $heightImage;
+        width: 100%;
+        object-fit: cover;
+        transition: 0.6s;
+    }
+
+    &:hover &__image {
+        filter: saturate(120%) contrast(150%);
+    }
+
+    &__content {
+        padding: 20px 12px 15px;
+        color: $black;
+    }
+
+    &__text {
+        margin-top: 8px;
+        font-size: 1.1rem;
+        position: relative;
+        left: 0.2rem;
+
+        @media screen and (min-width: 768px) {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.avis {
+    position: relative;
+    margin: 15% 0;
+
+    @include circle(120px, 0, auto, -12px, auto, -1, $red, hard-light);
+
+    @media screen and (min-width: 768px) {
+        margin: 8% 0 10% 0;
+
+        @include circle(170px, -15px, auto, 8%, auto, -1, $red, hard-light);
+    }
+
+    &__container {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        @include circle(50px, 0px, auto, 85px, auto, -1, $red, hard-light);
+
+        @media screen and (min-width: 768px) {
+            width: 80%;
+            padding-left: 10%;
+
+            @include circle(60px, 0px, auto, calc(10% + 180px), auto, 1, $red, hard-light);
+
+            &::before {
+                content: '';
+                background: center / contain no-repeat url('../img/dots.png');
+                display: block;
+                width: 75px;
+                height: 75px;
+                position: absolute;
+                right: -50px;
+                top: 0;
+            }
+        }
+    }
+
+    &__image {
+        @include avatar;
+        flex-shrink: 0;
+
+        @media screen and (min-width: 768px) {
+            @include avatar(180px);
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        margin: 0 5%;
+        @include circle(20px, 50%, auto, -23px, auto, -1, white, hard-light);
+
+        @media screen and (min-width: 768px) {
+            margin: 0 10%;
+
+            @include circle(30px, 60%, auto, -50px, auto, -1, white, hard-light);
+        }
+    }
+
+    &__title {
+        font-size: 2rem;
+
+        @media screen and (min-width: 768px) {
+            font-size: 2.5rem;
+        }
+    }
+
+    &__text {
+        font-size: 1.1rem;
+        margin-top: 8px;
+        line-height: 150%;
+
+        @media screen and (min-width: 768px) {
+            font-size: 1.3rem;
+        }
+
+        @media screen and (min-width: 768px) {
+            margin-top: 25px;
+        }
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        background-color: $black;
+        width: 100%;
+        bottom: -30%;
+        top: -30%;
+        position: absolute;
+        z-index: -1;
+        clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+
+        @media screen and (min-width: 768px) {
+            clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+            bottom: -40%;
+            top: -40%;
+        }
+    }
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 150%;
+
+    @include circle(45px, -50px, auto, 10%, auto, -2);
+
+    @media screen and (min-width: 768px) {
+        font-size: 1.3rem;
+
+        @include circle(100px, -30px, auto, auto, 35%, 1, hard-light);
+    }
+}
+
+.intro {
+    padding: 0 5%;
+
+    @media screen and (min-width: 768px) {
+        display: flex;
+        column-gap: 50px;
+        align-items: center;
+        padding: 0 8%;
+    }
+
+    &__image {
+        display: none;
+
+        @media screen and (min-width: 1000px) {
+            display: block;
+            height: 300px;
+        }
+    }
+}
+
+.technique {
+    display: flex;
+    justify-content: flex-end;
+    margin: 15% 0;
+
+    @include circle(100px, -90px, auto, auto, -30px);
+
+    @media screen and (min-width: 768px) {
+        justify-content: space-between;
+        align-items: center;
+        margin: 8% 0 5% 8%;
+
+        &::after {
+            display: none;
+        }
+    }
+
+    &__image {
+        width: 30%;
+        display: none;
+
+        @media screen and (min-width: 768px) {
+            display: block;
+        }
+    }
+
+    &__container {
+        position: relative;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include circle(60px, auto, -40px, -25%);
+
+        @media screen and (min-width: 768px) {
+            width: 55%;
+            padding: 2% 0;
+
+            @include circle(100px, auto, -40px, calc(-13% - 40px), auto, -2);
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            background-color: $black;
+            left: -15%;
+            right: 0;
+            bottom: -20%;
+            top: -30%;
+            position: absolute;
+            z-index: -1;
+            clip-path: polygon(6% 5%, 100% 9%, 100% 100%, 0 95%);
+
+            @media screen and (min-width: 768px) {
+                clip-path: polygon(6% 5%, 100% 19%, 100% 100%, 2% 85%);
+            }
+        }
+    }
+
+    &__text {
+        color: white;
+        position: relative;
+        padding-right: 5%;
+        text-align: center;
+
+        @media screen and (min-width: 768px) {
+            text-align: left;
+            padding-right: 10%;
+        }
+
+        &--hidden {
+            transition: 1s;
+            opacity: 0;
+            visibility: hidden;
+            max-height: 0;
+
+            @media screen and (min-width: 768px) {
+                opacity: 1;
+                visibility: visible;
+                max-height: none;
+            }
+        }
+    }
+
+    %iconNext {
+        width: 25px;
+        height: 25px;
+        margin-top: 10px;
+
+        @media screen and (min-width: 768px) {
+            display: none;
+        }
+    }
+
+    &__checkbox {
+        @extend %iconNext;
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    &__checkbox:checked ~ &__text--hidden {
+        opacity: 1;
+        visibility: visible;
+        max-height: 150px;
+    }
+
+    &__checkbox:checked ~ &__next {
+        transform: rotate(180deg);
+    }
+
+    &__next {
+        @extend %iconNext;
+        transition: transform 0.2s;
+        position: relative;
+    }
+}
+
+.outro {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+        display: block;
+        margin: 5% 8%;
+
+        @include circle(130px, auto, calc(-80% - 70px), auto, -5%);
+    }
+}
+
+.footer {
+    background-color: $black;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 8% 2% 5%;
+    clip-path: polygon(0 0, 100% 12%, 100% 100%, 0% 100%);
+
+    @media screen and (min-width: 768px) {
+        padding: 5% 5% 3%;
+    }
+
+    &__copyright {
+        font-size: 0.6rem;
+        width: 18%;
+        display: flex;
+        align-items: flex-end;
+
+        @media screen and (min-width: 768px) {
+            font-size: 1rem;
+        }
+    }
+}
+
+.socials {
+    &__title {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+
+        @media screen and (min-width: 768px) {
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+    }
+
+    &__list {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__icon {
+        width: 20px;
+        transition: .1s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        @media screen and (min-width: 768px) {
+            width: 30px;
+        }
+    }
+}
+
+.navFooter {
+    display: flex;
+    align-items: flex-end;
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__item {
+        padding: 5px 0;
+        font-size: 1rem;
+
+        @media screen and (min-width: 768px) {
+            font-size: 1.5rem;
+            padding: 10px 0;
+        }
+    }
+}
