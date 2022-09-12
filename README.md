@@ -1,4 +1,6 @@
-# Oonsor : marque et design créée dans le cadre de cours de web design
+# Oonsor 
+
+Marque et design créée dans le cadre de cours de web design
 
 ## Maquettes : 
 
